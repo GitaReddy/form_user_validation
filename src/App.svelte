@@ -1,30 +1,167 @@
+
+
 <script>
-	export let name;
-</script>
-
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+	import 'bootstrap/dist/css/bootstrap.min.css';
+	let firstName = '';
+	let surname = '';
+	let email = '';
+	let password = '';
+	let mobile = '';
+	let formSubmitted = false;
+	 
+	function handleSubmit(event) {
+	 event.preventDefault();
+	 // Validate the form fields and submit data if valid
+	 if (validateForm()) {
+	displaySubmittedData();
+	console.log('Form submitted successfully!');
+	formSubmitted = true;
+	 }
 	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+	 
+	function validateForm() {
+	 let isValid = true;
+	 
+	 // Validate the form fields
+	 if (firstName.length === 0 || firstName.length > 28) {
+	displayError('firstName', 'First Name is required and should be less than or equal to 28 characters.');
+	isValid = false;
+	 } else {
+	hideError('firstName');
+	 }
+	 
+	 if (surname.length === 0 || surname.length > 28) {
+displayError('surname', 'Surname is required and should be less than or equal to 28 characters.');
+isValid = false;
+ } else {
+hideError('surname');
+ }
+	 
+	 if (!validateEmail(email)) {
+	displayError('email', 'Invalid Email format.');
+	isValid = false;
+	 } else {
+	hideError('email');
+	 }
+	 
+	//  if (!validatePassword(password)) {
+	// displayError('password', 'Invalid Password format. The password should contain at least one special character and one number.');
+	// isValid = false;
+	//  } else {
+	// hideError('password');
+	//  }
+	 
+	 if (!validateMobile(mobile)) {
+	displayError('mobile', 'Invalid Mobile format. The mobile number should contain 10 digits.');
+	isValid = false;
+	 } else {
+	hideError('mobile');
+	 }
+	 
+	 return isValid;
 	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+	 
+	function validateEmail(email) {
+	 // Validate the email format using a regular expression
+	 const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+	 return emailRegex.test(email);
 	}
-</style>
+	 
+	
+	 
+	function validateMobile(mobile) {
+	 // Validate the mobile format using a regular expression
+	 const mobileRegex = /^\d{10}$/;
+	 return mobileRegex.test(mobile);
+	}
+	 
+	function displayError(fieldId, errorMessage) {
+	 const field = document.getElementById(fieldId);
+	 const errorContainer = field.parentElement.querySelector('.error-message');
+	 errorContainer.innerText = errorMessage;
+	 errorContainer.style.display = 'block';
+	}
+	 
+	function hideError(fieldId) {
+	 const field = document.getElementById(fieldId);
+	 const errorContainer = field.parentElement.querySelector('.error-message');
+	 errorContainer.style.display = 'none';
+	}
+	 
+	function displaySubmittedData() {
+	 // Get the container element for displaying the submitted data
+	 const submittedDataContainer = document.getElementById('submittedData');
+	 
+	 // Create an HTML string with the submitted data
+	 const submittedDataHTML = `
+	<h3>Display Information</h3>
+	<p><strong>First Name:</strong> ${firstName}</p>
+	<p><strong>Surname:</strong> ${surname}</p>
+	<p><strong>Email:</strong> ${email}</p>
+	
+	<p><strong>Mobile:</strong> ${mobile}</p>
+	 `;
+	 
+	 // Set the HTML of the container to display the submitted data
+	submittedDataContainer.innerHTML = submittedDataHTML;
+	}
+	  </script>
+	 
+	  <style>
+	.error-message {
+	 display: none;
+	 color: red;
+	 font-size: 12px;
+	}
+	/*  */
+	/* input{
+		width:500px;
+	} */
+	
+	  </style>
+	 
+	  <div class="container">
+	<form on:submit|preventDefault={handleSubmit}>
+		<h2 style="color:#0d6efd;padding-left:100px;">Form Validations</h2>
+	 <div>
+	<label for="firstName" class="form-label">First Name</label>
+	<input type="text" style ="width:500px" class="form-control" id="firstName" bind:value={firstName} required>
+	<div class="error-message"></div>
+	 </div>
+	 
+	 <div>
+	<label for="surname" class="form-label">Surname</label>
+	<input type="text" style ="width:500px" class="form-control" id="surname" bind:value={surname} required>
+	<div class="error-message"></div>
+	 </div>
+	 
+	 <div>
+	<label for="email" class="form-label">Email</label>
+	<input type="email" style ="width:500px"  class="form-control" id="email" bind:value={email} required>
+	<div class="error-message"></div>
+	 </div>
+	 
+	 
+	 
+	 <div>
+	<label for="mobile" class="form-label">Mobile</label>
+	
+	 <input type="number" style ="width:500px"class="form-control" id="mobile" bind:value={mobile} required pattern="^\+?\d+$" maxlength="10">
+	 <div class="error-message"></div>
+	
+	 </div>
+	 <br/>
+	 
+	 <div><button type="submit" class="btn btn-primary" >Submit</button></div>
+	 <!-- <button type="submit" class="btn btn-primary" >Submit</button> -->
+	</form>
+
+	<br/>
+	
+	<div id="submittedData" class="submittedData"></div>
+	  </div>
+	  
+	  
+	
+	
+	  
