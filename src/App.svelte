@@ -117,6 +117,10 @@ hideError('surname');
 	/* input{
 		width:500px;
 	} */
+
+	.container{
+		padding-left: 50px;
+	}
 	
 	  </style>
 	 
