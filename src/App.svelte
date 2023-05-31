@@ -119,7 +119,7 @@ hideError('surname');
 	} */
 
 	.container{
-		align-items: center;
+		padding-left: 300px;
 	}
 	
 	  </style>
