@@ -109,8 +109,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   </main>
   <div id="submittedData" class="submittedData"></div>
   </div>
-  <!-- <style>
-	input{
+  <style>
+	/* input{
 		width:"300px";
+	} */
+
+
+	.container{
+		padding-left:500px;
 	}
-  </style> -->
+  </style>
