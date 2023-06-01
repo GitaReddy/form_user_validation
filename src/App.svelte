@@ -79,25 +79,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 	<form on:submit|preventDefault={handleSubmit}>
 		<h1 style="color:#02429E;padding-left:100px">Form Validations</h1>
 	  <div>
-		<label for="name" class="form-label">Name</label>
+		<label for="name" class="form-label" style="padding-top:10px;padding-bottom:10px;">Name</label>
 		<input type="text" id="name" bind:value={name} class="form-control"  style ="width:500px"/>
 		<div>{#if errors.name}<p class="error" style="color:red;">{errors.name}</p>{/if}</div>
 	  </div>
   
 	  <div>
-		<label for="email" class="form-label" >Email</label>
+		<label for="email" class="form-label" style="padding-top:10px;padding-bottom:10px;">Email</label>
 		<input type="email" id="email" bind:value={email} class="form-control" style ="width:500px" />
 	<div>{#if errors.email}<p class="error" style="color:red;">{errors.email}</p>{/if}</div>
 	  </div>
   
 	  <div>
-		<label for="password" class="form-label">Password</label>
+		<label for="password" class="form-label" style="padding-top:10px;padding-bottom:10px;">Password</label>
 		<input type="password" id="password" bind:value={password} class="form-control" style ="width:500px" />
 	<div>{#if errors.password}<p class="error" style="color:red;">{errors.password}</p>{/if}</div>
 	  </div>
   
 	  <div>
-		<label for="confirmPassword" class="form-label">Confirm Password</label>
+		<label for="confirmPassword" class="form-label" style="padding-top:10px;padding-bottom:10px;">Confirm Password</label>
 		<input type="password" id="confirmPassword" bind:value={confirmPassword} class="form-control" style ="width:500px" />
 	<div>{#if errors.confirmPassword}<p class="error" style="color:red;">{errors.confirmPassword}</p>{/if}</div>
 	  </div>
