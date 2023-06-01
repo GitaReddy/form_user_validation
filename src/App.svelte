@@ -98,12 +98,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   
 	  <div>
 		<label for="confirmPassword" class="label" style= "padding-bottom:10px !important">Confirm Password</label>
-		<input type="password" id="confirmPassword"  placeholder="ConfirmPassword" bind:value={confirmPassword} class="form-control" style ="width:500px" />
+		<input type="password" id="confirmPassword"  placeholder="Confirm Password" bind:value={confirmPassword} class="form-control" style ="width:500px" />
 	{#if errors.confirmPassword}<div class="error" style="color:red;padding-bottom:8px !important">{errors.confirmPassword}</div>{/if}
 	  </div>
   <br/>
 	  <button type="submit" class="btn btn-primary">Submit</button>
-	  <!-- <div id="submittedData" class="submittedData"></div> -->
+	  
 	</form>
 	
   </main>
