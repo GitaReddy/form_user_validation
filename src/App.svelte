@@ -116,8 +116,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 		padding-bottom: "20px";
 	} */
   .label{
-	padding-bottom:"30px";
-	padding-bottom:"30px";
+	padding-top:"30px !important";
+	padding-bottom:"30px !important";
   }
 
 	.container{
