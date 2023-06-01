@@ -79,25 +79,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 	<form on:submit|preventDefault={handleSubmit}>
 		<h1 style="color:#02429E;padding-left:100px">Form Validations</h1>
 	  <div>
-		<label for="name">Name</label>
+		<label for="name" class="label">Name</label>
 		<input type="text" id="name" bind:value={name} class="form-control"  style ="width:500px"/>
 		{#if errors.name}<div class="error" style="color:red;">{errors.name}</div>{/if}
 	  </div>
   
 	  <div>
-		<label for="email">Email</label>
+		<label for="email" class="label">Email</label>
 		<input type="email" id="email" bind:value={email} class="form-control" style ="width:500px" />
 	{#if errors.email}<div class="error" style="color:red;">{errors.email}</div>{/if}
 	  </div>
   
 	  <div>
-		<label for="password">Password</label>
+		<label for="password" class="label">Password</label>
 		<input type="password" id="password" bind:value={password} class="form-control" style ="width:500px" />
 	{#if errors.password}<div class="error" style="color:red;">{errors.password}</div>{/if}
 	  </div>
   
 	  <div>
-		<label for="confirmPassword" >Confirm Password</label>
+		<label for="confirmPassword" class="label">Confirm Password</label>
 		<input type="password" id="confirmPassword" bind:value={confirmPassword} class="form-control" style ="width:500px" />
 	{#if errors.confirmPassword}<div class="error" style="color:red;">{errors.confirmPassword}</div>{/if}
 	  </div>
@@ -115,9 +115,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 		padding-top:"10px";
 		padding-bottom: "20px";
 	} */
-  label{
-	padding-bottom:"10px";
-
+  .label{
+	padding-bottom:"30px";
+	padding-bottom:"30px";
   }
 
 	.container{
