@@ -1,171 +1,116 @@
-
-
 <script>
-	import 'bootstrap/dist/css/bootstrap.min.css';
-	let firstName = '';
-	let surname = '';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+	let name = '';
 	let email = '';
 	let password = '';
-	let mobile = '';
+	let confirmPassword = '';
+	let errors = {};
 	let formSubmitted = false;
-	 
+  
+	function validateForm() {
+	  errors = {};
+  
+	  if (!name) {
+		errors.name = 'Name is required';
+	  }
+  
+	  if (!email) {
+		errors.email = 'Email is required';
+	  } else if (!isValidEmail(email)) {
+		errors.email = 'Please enter a valid email address';
+	  }
+  
+	  if (!password) {
+		errors.password = 'Password is required';
+	  } else if (password.length < 8) {
+		errors.password = 'Password must be at least 8 characters long';
+	  }
+  
+	  if (password !== confirmPassword) {
+		errors.confirmPassword = 'Passwords do not match';
+	  }
+  
+	  // Additional validations...
+  
+	  return Object.keys(errors).length === 0;
+	}
+  
+	function isValidEmail(email) {
+	  // Implement your email validation logic here
+	  // Return true if the email is valid, false otherwise
+
+	  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+	 return emailRegex.test(email);
+
+	}
+  
 	function handleSubmit(event) {
-	 event.preventDefault();
-	 // Validate the form fields and submit data if valid
-	 if (validateForm()) {
-	displaySubmittedData();
+		event.preventDefault();
+	  if (validateForm()) {
+		// Form is valid, proceed with form submission
+		// ...
+
+		displaySubmittedData();
 	console.log('Form submitted successfully!');
 	formSubmitted = true;
-	 }
+	  }
 	}
-	 
-	function validateForm() {
-	 let isValid = true;
-	 
-	 // Validate the form fields
-	 if (firstName.length === 0 || firstName.length > 28) {
-	displayError('firstName', 'First Name is required and should be less than or equal to 28 characters.');
-	isValid = false;
-	 } else {
-	hideError('firstName');
-	 }
-	 
-	 if (surname.length === 0 || surname.length > 28) {
-displayError('surname', 'Surname is required and should be less than or equal to 28 characters.');
-isValid = false;
- } else {
-hideError('surname');
- }
-	 
-	 if (!validateEmail(email)) {
-	displayError('email', 'Invalid Email format.');
-	isValid = false;
-	 } else {
-	hideError('email');
-	 }
-	 
-	//  if (!validatePassword(password)) {
-	// displayError('password', 'Invalid Password format. The password should contain at least one special character and one number.');
-	// isValid = false;
-	//  } else {
-	// hideError('password');
-	//  }
-	 
-	 if (!validateMobile(mobile)) {
-	displayError('mobile', 'Invalid Mobile format. The mobile number should contain 10 digits.');
-	isValid = false;
-	 } else {
-	hideError('mobile');
-	 }
-	 
-	 return isValid;
-	}
-	 
-	function validateEmail(email) {
-	 // Validate the email format using a regular expression
-	 const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-	 return emailRegex.test(email);
-	}
-	 
-	
-	 
-	function validateMobile(mobile) {
-	 // Validate the mobile format using a regular expression
-	 const mobileRegex = /^\d{10}$/;
-	 return mobileRegex.test(mobile);
-	}
-	 
-	function displayError(fieldId, errorMessage) {
-	 const field = document.getElementById(fieldId);
-	 const errorContainer = field.parentElement.querySelector('.error-message');
-	 errorContainer.innerText = errorMessage;
-	 errorContainer.style.display = 'block';
-	}
-	 
-	function hideError(fieldId) {
-	 const field = document.getElementById(fieldId);
-	 const errorContainer = field.parentElement.querySelector('.error-message');
-	 errorContainer.style.display = 'none';
-	}
-	 
+
 	function displaySubmittedData() {
+		console.log("html");
 	 // Get the container element for displaying the submitted data
 	 const submittedDataContainer = document.getElementById('submittedData');
 	 
 	 // Create an HTML string with the submitted data
 	 const submittedDataHTML = `
 	<h3>Display Information</h3>
-	<p><strong>First Name:</strong> ${firstName}</p>
-	<p><strong>Surname:</strong> ${surname}</p>
-	<p><strong>Email:</strong> ${email}</p>
-	
-	<p><strong>Mobile:</strong> ${mobile}</p>
-	 `;
+	<li><strong>First Name:</strong> ${name}</li>
+	<li><strong>Email:</strong> ${email}</li>
+	<li><strong>Password:</strong> ${password}</li>
+	<li><strong>Confirm Password:</strong> ${confirmPassword}</li>`;
 	 
 	 // Set the HTML of the container to display the submitted data
 	submittedDataContainer.innerHTML = submittedDataHTML;
 	}
-	  </script>
-	 
-	  <style>
-	.error-message {
-	 display: none;
-	 color: red;
-	 font-size: 12px;
-	}
-	/*  */
-	/* input{
-		width:500px;
-	} */
-
-	.container{
-		padding-left: 300px;
-	}
-	
-	  </style>
-	 
-	  <div class="container">
+  </script>
+  <div class ="container" >
+  <main>
 	<form on:submit|preventDefault={handleSubmit}>
-		<h2 style="color:#0d6efd;padding-left:100px;">Form Validations</h2>
-	 <div>
-	<label for="firstName" class="form-label">First Name</label>
-	<input type="text" style ="width:500px" class="form-control" id="firstName" bind:value={firstName} required>
-	<div class="error-message"></div>
-	 </div>
-	 
-	 <div>
-	<label for="surname" class="form-label">Surname</label>
-	<input type="text" style ="width:500px" class="form-control" id="surname" bind:value={surname} required>
-	<div class="error-message"></div>
-	 </div>
-	 
-	 <div>
-	<label for="email" class="form-label">Email</label>
-	<input type="email" style ="width:500px"  class="form-control" id="email" bind:value={email} required>
-	<div class="error-message"></div>
-	 </div>
-	 
-	 
-	 
-	 <div>
-	<label for="mobile" class="form-label">Mobile</label>
-	
-	 <input type="number" style ="width:500px"class="form-control" id="mobile" bind:value={mobile} required pattern="^\+?\d+$" maxlength="10">
-	 <div class="error-message"></div>
-	
-	 </div>
-	 <br/>
-	 
-	 <div><button type="submit" class="btn btn-primary" >Submit</button></div>
-	 <!-- <button type="submit" class="btn btn-primary" >Submit</button> -->
-	</form>
-
-	<br/>
-	
-	<div id="submittedData" class="submittedData"></div>
+		<h1 style="color:#02429E;padding-left:100px">Form Validations</h1>
+	  <div>
+		<label for="name" class="form-label">Name</label>
+		<input type="text" id="name" bind:value={name} class="form-control"  style ="width:500px"/>
+		<div>{#if errors.name}<p>{errors.name}</p>{/if}</div>
 	  </div>
-	  
-	  
+  
+	  <div>
+		<label for="email" class="form-label" >Email</label>
+		<input type="email" id="email" bind:value={email} class="form-control" style ="width:500px" />
+	<div>{#if errors.email}<p>{errors.email}</p>{/if}</div>
+	  </div>
+  
+	  <div>
+		<label for="password" class="form-label">Password</label>
+		<input type="password" id="password" bind:value={password} class="form-control" style ="width:500px" />
+	<div>{#if errors.password}<p>{errors.password}</p>{/if}</div>
+	  </div>
+  
+	  <div>
+		<label for="confirmPassword" class="form-label">Confirm Password</label>
+		<input type="password" id="confirmPassword" bind:value={confirmPassword} class="form-control" style ="width:500px" />
+	<div>{#if errors.confirmPassword}<p>{errors.confirmPassword}</p>{/if}</div>
+	  </div>
+  <br/>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	  <!-- <div id="submittedData" class="submittedData"></div> -->
+	</form>
 	
-	
-	  
+  </main>
+  <div id="submittedData" class="submittedData"></div>
+  </div>
+  <!-- <style>
+	input{
+		width:"300px";
+	}
+  </style> -->
