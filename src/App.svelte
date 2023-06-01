@@ -111,10 +111,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   </div>
   <style>
 	
-	input{
+	/* input{
 		padding-top:"10px";
 		padding-bottom: "20px";
-	}
+	} */
   label{
 	padding-top:"10px";
 
