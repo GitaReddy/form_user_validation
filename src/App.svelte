@@ -58,13 +58,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 	}
 
 	function displaySubmittedData() {
-		console.log("html");
+		
 	 // Get the container element for displaying the submitted data
 	 const submittedDataContainer = document.getElementById('submittedData');
 	 
 	 // Create an HTML string with the submitted data
 	 const submittedDataHTML = `
-	<h3>Display Information</h3>
+	<h3 Style="padding-top:30px;">Display Information</h3>
 	<li><strong>First Name:</strong> ${name}</li>
 	<li><strong>Email:</strong> ${email}</li>
 	<li><strong>Password:</strong> ${password}</li>
@@ -81,25 +81,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 	  <div>
 		<label for="name" class="form-label">Name</label>
 		<input type="text" id="name" bind:value={name} class="form-control"  style ="width:500px"/>
-		<div>{#if errors.name}<p>{errors.name}</p>{/if}</div>
+		<div>{#if errors.name}<p class="error" style="color:red;">{errors.name}</p>{/if}</div>
 	  </div>
   
 	  <div>
 		<label for="email" class="form-label" >Email</label>
 		<input type="email" id="email" bind:value={email} class="form-control" style ="width:500px" />
-	<div>{#if errors.email}<p>{errors.email}</p>{/if}</div>
+	<div>{#if errors.email}<p class="error" style="color:red;">{errors.email}</p>{/if}</div>
 	  </div>
   
 	  <div>
 		<label for="password" class="form-label">Password</label>
 		<input type="password" id="password" bind:value={password} class="form-control" style ="width:500px" />
-	<div>{#if errors.password}<p>{errors.password}</p>{/if}</div>
+	<div>{#if errors.password}<p class="error" style="color:red;">{errors.password}</p>{/if}</div>
 	  </div>
   
 	  <div>
 		<label for="confirmPassword" class="form-label">Confirm Password</label>
 		<input type="password" id="confirmPassword" bind:value={confirmPassword} class="form-control" style ="width:500px" />
-	<div>{#if errors.confirmPassword}<p>{errors.confirmPassword}</p>{/if}</div>
+	<div>{#if errors.confirmPassword}<p class="error" style="color:red;">{errors.confirmPassword}</p>{/if}</div>
 	  </div>
   <br/>
 	  <button type="submit" class="btn btn-primary">Submit</button>
@@ -110,10 +110,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   <div id="submittedData" class="submittedData"></div>
   </div>
   <style>
-	/* input{
-		width:"300px";
-	} */
+	
+	input{
+		padding-top:"10px";
+		padding-bottom: "20px";
+	}
+  label{
+	padding-top:"10px";
 
+  }
 
 	.container{
 		padding-left:500px;
