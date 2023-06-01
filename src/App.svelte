@@ -81,25 +81,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 	  <div>
 		<label for="name">Name</label>
 		<input type="text" id="name" bind:value={name} class="form-control"  style ="width:500px"/>
-		{#if errors.name}<p class="error" style="color:red;">{errors.name}</p>{/if}
+		{#if errors.name}<div class="error" style="color:red;">{errors.name}</div>{/if}
 	  </div>
   
 	  <div>
 		<label for="email">Email</label>
 		<input type="email" id="email" bind:value={email} class="form-control" style ="width:500px" />
-	{#if errors.email}<p class="error" style="color:red;">{errors.email}</p>{/if}
+	{#if errors.email}<div class="error" style="color:red;">{errors.email}</div>{/if}
 	  </div>
   
 	  <div>
 		<label for="password">Password</label>
 		<input type="password" id="password" bind:value={password} class="form-control" style ="width:500px" />
-	{#if errors.password}<p class="error" style="color:red;">{errors.password}</p>{/if}
+	{#if errors.password}<div class="error" style="color:red;">{errors.password}</div>{/if}
 	  </div>
   
 	  <div>
 		<label for="confirmPassword" >Confirm Password</label>
 		<input type="password" id="confirmPassword" bind:value={confirmPassword} class="form-control" style ="width:500px" />
-	{#if errors.confirmPassword}<p class="error" style="color:red;">{errors.confirmPassword}</p>{/if}
+	{#if errors.confirmPassword}<div class="error" style="color:red;">{errors.confirmPassword}</div>{/if}
 	  </div>
   <br/>
 	  <button type="submit" class="btn btn-primary">Submit</button>
